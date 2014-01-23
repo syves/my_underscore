@@ -10,15 +10,14 @@ exports.map = function(list, transform) {
   return map(list, [], transform);
 };
 
-exports.filter = function(list, condition) {
-  var results = [];
-  var idx = 0;
-  while (idx < list.length) {
-    if (condition(list[idx])) {
-      results.push(list[idx]);
-    }
-    idx += 1;
+var filter = function(list, results, condition){
+  if (list.length === 0){
+    return results;
+  } else {
+    return filter(list.slice(1), (condition(list[0]) ? results.concat(list[0]) : results), condition);
   }
-  return results;
+}
+
+exports.filter = function(list, condition) {
+  return filter(list, [], condition);
 };
-  
