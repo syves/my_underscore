@@ -1,7 +1,9 @@
-exports.map = function(list, transform, context) {
+exports.map = function(list, transform) {
   var results = [];
-  for (var idx = 0; idx < list.length; idx++) {
-    results.push(transform(list[idx]));
+  var idx = 0;
+  while (idx < list.length) {
+    results.push(transform(list[idx], idx));
+    idx += 1;
   }
   return results;
 };
