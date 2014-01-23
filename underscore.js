@@ -1,11 +1,13 @@
-exports.map = function(list, transform) {
-  var results = [];
-  var idx = 0;
-  while (idx < list.length) {
-    results.push(transform(list[idx], idx));
-    idx += 1;
+var map = function(list, results, transform){
+  if (list.length === 0){
+    return results;
+  } else {
+    return map(list.slice(1), results.concat(transform(list[0], results.length)), transform);
   }
-  return results;
+};
+
+exports.map = function(list, transform) {
+  return map(list, [], transform);
 };
 
 exports.filter = function(list, condition) {
