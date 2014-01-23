@@ -7,3 +7,16 @@ exports.map = function(list, transform) {
   }
   return results;
 };
+
+exports.filter = function(list, condition) {
+  var results = [];
+  var idx = 0;
+  while (idx < list.length) {
+    if (condition(list[idx])) {
+      results.push(list[idx]);
+    }
+    idx += 1;
+  }
+  return results;
+};
+  
