@@ -21,3 +21,12 @@ var filter = function(list, results, condition){
 exports.filter = function(list, condition) {
   return filter(list, [], condition);
 };
+
+exports.reduce = function(list, iterator, result, context) {
+  if (list.length === 0){
+    return result;
+  } else {
+    return exports.reduce(list.slice(1), iterator, iterator(result, list[0]), context)
+  }
+}
+

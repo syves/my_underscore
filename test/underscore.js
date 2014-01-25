@@ -16,3 +16,5 @@ var evens = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
 assert.strictEqual(evens.join(', '), '2, 4, 6');
   
 
+var sum = _.reduce([1, 2, 3], function(sum, num){ return sum + num; }, 0);
+assert.strictEqual(sum, 6);
