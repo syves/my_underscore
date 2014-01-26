@@ -10,7 +10,7 @@ exports.map = function(list, transform) {
   return map(list, [], transform);
 };
 
-var filter = function(list, results, condition){
+var filter = function(list, results, condition) {
   if (list.length === 0){
     return results;
   } else {
@@ -23,10 +23,33 @@ exports.filter = function(list, condition) {
 };
 
 exports.reduce = function(list, iterator, result, context) {
-  if (list.length === 0){
+  if (list.length === 0) {
     return result;
   } else {
     return exports.reduce(list.slice(1), iterator, iterator(result, list[0]), context)
   }
 }
 
+var range = function(num, stop, step) {
+  if (num >= stop) {
+    return [];
+  } else {
+    return [num].concat(range(num + step, stop, step));
+  }
+
+};
+
+exports.range = function(){
+  var start = 0, stop, step = 1, list = [];
+  if (arguments.length === 1) {
+    stop = arguments[0];
+  } else if (arguments.length === 2) {
+    start = arguments[0];
+    stop = arguments[1];
+  } else {
+    start = arguments[0];
+    stop = arguments[1];
+    step = arguments[2];
+  }
+  return range(start, stop, step);
+}
