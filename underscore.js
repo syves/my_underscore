@@ -1,3 +1,5 @@
+var underscore = require('underscore'); 
+
 var map = function(list, results, transform){
   if (list.length === 0){
     return results;
@@ -38,7 +40,7 @@ var range = function(num, stop, step) {
   }
 
 };
-
+  //rewrite with def!!
 exports.range = function(){
   var start = 0, stop, step = 1, list = [];
   if (arguments.length === 1) {
@@ -53,3 +55,32 @@ exports.range = function(){
   }
   return range(start, stop, step);
 }
+
+exports.union = function(){
+  return underscore.uniq(Array.prototype.concat.apply([], arguments));
+}
+console.log(exports.union([1, 2, 3], [2, 30, 1], [1, 40]))
+
+
+/*
+exports.intersection = function(arrays){
+  var j = array[0], var h = array[1];  
+  for (var i = 0; i < argumnets.length; i += 1){
+    for (j = 0; j < array.length; j += 1){
+    results.push(j[idx]? === h[idx]) 
+  }
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+

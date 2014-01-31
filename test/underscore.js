@@ -21,3 +21,6 @@ assert.strictEqual(sum, 6);
 
 var range = _.range(5, 15, 2);
 assert.strictEqual(range.join(', '), '5, 7, 9, 11, 13');
+
+var union = _.union([1, 2, 3], [2, 30, 1], [1, 40]);
+assert.strictEqual(union.join(', '), '1, 2, 3, 30, 40');
