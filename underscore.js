@@ -62,9 +62,6 @@ exports.union = function(){
   return underscore.uniq(Array.prototype.concat.apply([], arguments));
 }
 
-//console.log(exports.union([1, 2, 3], [2, 30, 1], [1, 40]))
-
-
 var intersection = function(a, b) {
   var results = [];
   for (i = 0; i < a.length; i += 1) {
@@ -84,31 +81,19 @@ var intersection = function(a, b) {
 exports.intersection = function(){
   var lists = Array.prototype.slice.apply(arguments);
   return underscore.uniq(exports.reduce(lists, intersection));
-
 }
 
-console.log(exports.intersection([1, 1, 2, 3], [2, 30, 1], [1, 40]))
-
-
-
-
-
-
-var shakrah = {
-  name: 'Shakrah',
-  greet: function(a, b) {
-    return 'Hello, my name is ' + this.name + ' (' + a + ', ' + b + ').';
-  }
+var difference = function(a, b) {
+  return exports.filter(a, function(val) {
+    return b.indexOf(val) < 0;
+  });
 };
 
-console.log(shakrah.greet('foo', 'bar'));
+exports.difference = function(){
+  var lists = Array.prototype.slice.apply(arguments);
+  return exports.reduce(lists, difference);
+}
+console.log(exports.difference([1, 2,4, 3, 3, 4], [2, 30, 1], [1, 40, 4]));
 
-var greet = shakrah.greet;
 
-var david = {
-  name: 'David'
-};
-
-console.log(shakrah.greet.call(david, 1, 2));
-console.log(shakrah.greet.apply(david, [1, 2]));
 
