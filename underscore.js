@@ -84,16 +84,54 @@ exports.intersection = function(){
 }
 
 var difference = function(a, b) {
-  return exports.filter(a, function(val) {
-    return b.indexOf(val) < 0;
-  });
+  return exports.filter(a, function(val) { return b.indexOf(val) < 0; });
 };
 
 exports.difference = function(){
   var lists = Array.prototype.slice.apply(arguments);
   return exports.reduce(lists, difference);
 }
-console.log(exports.difference([1, 2,4, 3, 3, 4], [2, 30, 1], [1, 40, 4]));
+
+exports.uniq = function(array, iterator, isSorted){
+  if (array.length === 0){
+    return [];
+  } else {
+    var first = array[0];
+    var rest = array.slice(1);
+    return [first].concat(exports.uniq(exports.filter(rest, function(val){
+      return val !== first;
+    })));
+  }
+};
+console.log(exports.uniq([1, 2, 1, 3, 1, 4]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
