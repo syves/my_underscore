@@ -1,6 +1,8 @@
 var underscore = require('underscore'); 
 
-var map = function(list, results, transform){
+var _ = exports;
+
+var map = function(list, results, transform) {
   if (list.length === 0){
     return results;
   } else {
@@ -43,7 +45,7 @@ var range = function(num, stop, step) {
 
 };
   //rewrite with def!!
-exports.range = function(){
+exports.range = function() {
   var start = 0, stop, step = 1, list = [];
   if (arguments.length === 1) {
     stop = arguments[0];
@@ -78,7 +80,7 @@ var intersection = function(a, b) {
   });
 };
 
-exports.intersection = function(){
+exports.intersection = function() {
   var lists = Array.prototype.slice.apply(arguments);
   return underscore.uniq(exports.reduce(lists, intersection));
 }
@@ -87,12 +89,12 @@ var difference = function(a, b) {
   return exports.filter(a, function(val) { return b.indexOf(val) < 0; });
 };
 
-exports.difference = function(){
+exports.difference = function() {
   var lists = Array.prototype.slice.apply(arguments);
   return exports.reduce(lists, difference);
 }
 
-exports.uniq = function(array, iterator, isSorted){
+exports.uniq = function(array, iterator, isSorted) {
   if (array.length === 0){
     return [];
   } else {
@@ -103,35 +105,86 @@ exports.uniq = function(array, iterator, isSorted){
     })));
   }
 };
-console.log(exports.uniq([1, 2, 1, 3, 1, 4]));
+
+
+exports.isArray = function(val) {
+  return Object.prototype.toString.call(val) === '[object Array]';
+};
+
+
+var shallow = function(){
+  if (array.length === 0){
+    return [];
+  } else {
+  var first = array[0];
+  var rest = array.slice(1);
+    if (first = []){
+      return first.concat(rest)}
+  }
+};
+
+_.flatten = function(array, shallow) {
+  if (shallow) {
+    return Array.prototype.concat.apply([], array);
+  } else if (array.length === 0){
+    return [];
+  } else {
+    var first = array[0];
+    return (_.isArray(first) ? _.flatten(first) : [first])
+           .concat(_.flatten(array.slice(1)));
+  }
+};
+
+
+
+/*  _.flatten( [ [1], [2], [3] ] )
+
+array: [ [1], [2], [3] ]
+array.length: 3
+first: [1]
+_.isArray(first): true
+_.flatten(first): [1]
+array.slice(1): [ [2], [3] ]
+_.flatten(array.slice(1)): [2, 3]
+_.flatten(first).concat(_.flatten(array.slice(1))): [1, 2, 3]
+
+
+
+array: [ [2], [3] ]
+array.length: 2
+first: [2]
+_.isArray(first): true
+_.flatten(first): [2]
+array.slice(1): [3]
+_.flatten(array.slice(1)): [3]
+_.flatten(first).concat(_.flatten(array.slice(1))): [2, 3]
+
+
+array: [2]
+array.length: 1
+first: 2
+_.isArray(first): false
+[first]: [2]
+array.slice(1): []
+_.flatten(array.slice(1)): []
+[first].concat(_.flatten(array.slice(1))): [2]
 
 
 
 
+array: [1]
+array.length: 1
+first: 1
+_.isArray(first): false
+[first]: [1]
+array.slice(1): []
+_.flatten(array.slice(1)): []
+[first].concat(_.flatten(array.slice(1))): [1]
 
 
 
+array: []
+array.length: 0
+return [] !!
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/

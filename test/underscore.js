@@ -24,3 +24,13 @@ assert.strictEqual(range.join(', '), '5, 7, 9, 11, 13');
 
 var union = _.union([1, 2, 3], [2, 30, 1], [1, 40]);
 assert.strictEqual(union.join(', '), '1, 2, 3, 30, 40');
+
+
+// flatten
+var list = [1, [2], [3, [[[4]]]]];
+assert.deepEqual(_.flatten(list), [1,2,3,4], 'can flatten nested arrays');
+assert.deepEqual(_.flatten(list, true), [1,2,3,[[[4]]]], 'can shallowly flatten nested arrays');
+//var result = (function(){ return _.flatten(arguments); })(1, [2], [3, [[[4]]]]);
+//assert.deepEqual(result, [1,2,3,4], 'works on an arguments object');
+list = [[1], [2], [3], [[4]]];
+assert.deepEqual(_.flatten(list, true), [1, 2, 3, [4]], 'can shallowly flatten arrays containing only other arrays');
