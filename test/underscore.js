@@ -34,3 +34,7 @@ assert.deepEqual(_.flatten(list, true), [1,2,3,[[[4]]]], 'can shallowly flatten 
 //assert.deepEqual(result, [1,2,3,4], 'works on an arguments object');
 list = [[1], [2], [3], [[4]]];
 assert.deepEqual(_.flatten(list, true), [1, 2, 3, [4]], 'can shallowly flatten arrays containing only other arrays');
+
+// pluck
+var stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+_.pluck(stooges, 'name');

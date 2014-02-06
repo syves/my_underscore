@@ -135,56 +135,18 @@ _.flatten = function(array, shallow) {
   }
 };
 
-
-
-/*  _.flatten( [ [1], [2], [3] ] )
-
-array: [ [1], [2], [3] ]
-array.length: 3
-first: [1]
-_.isArray(first): true
-_.flatten(first): [1]
-array.slice(1): [ [2], [3] ]
-_.flatten(array.slice(1)): [2, 3]
-_.flatten(first).concat(_.flatten(array.slice(1))): [1, 2, 3]
-
-
-
-array: [ [2], [3] ]
-array.length: 2
-first: [2]
-_.isArray(first): true
-_.flatten(first): [2]
-array.slice(1): [3]
-_.flatten(array.slice(1)): [3]
-_.flatten(first).concat(_.flatten(array.slice(1))): [2, 3]
-
-
-array: [2]
-array.length: 1
-first: 2
-_.isArray(first): false
-[first]: [2]
-array.slice(1): []
-_.flatten(array.slice(1)): []
-[first].concat(_.flatten(array.slice(1))): [2]
+_.pluck = function(list, propertyName){
+  return _.map(list, function(obj){
+    return obj[propertyName];
+  });
+};
+console.log(_.pluck(stooges, 'name'));
 
 
 
 
-array: [1]
-array.length: 1
-first: 1
-_.isArray(first): false
-[first]: [1]
-array.slice(1): []
-_.flatten(array.slice(1)): []
-[first].concat(_.flatten(array.slice(1))): [1]
 
 
 
-array: []
-array.length: 0
-return [] !!
 
-*/
+
