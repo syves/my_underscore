@@ -143,9 +143,6 @@ _.pluck = function(list, propertyName){
 
 _.each = function(list, iterator) {
   var type = Object.prototype.toString.call(list);
-  // '[object Array]'
-  // '[object Object]'
-  // ?? Error
   if (type === '[object Array]') {
     for (var i = 0; i < list.length; i += 1) {
       iterator(list[i], i, list);
@@ -158,6 +155,16 @@ _.each = function(list, iterator) {
     return undefined;
   }
 };
+
+_.invoke = function(list, methodName) {
+  _.each(list, function(element) {
+    element[methodName]();
+  })
+};
+console.log(_.invoke(['5', '7', '9', 'bob'], 'toUpperCase'));
+
+
+
 
 
 
