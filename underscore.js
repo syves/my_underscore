@@ -161,7 +161,15 @@ _.invoke = function(list, methodName) {
     element[methodName]();
   })
 };
-console.log(_.invoke(['5', '7', '9', 'bob'], 'toUpperCase'));
+//console.log(_.invoke(['5', '7', '9', 'bob'], 'toUpperCase'));
+
+_.contains = function(list, value) {
+ if (list.indexOf(value) >= 0) {
+  return true; 
+ }
+};
+//console.log(_.contains([5, 8, 9, 3], 8));
+
 
 
 
