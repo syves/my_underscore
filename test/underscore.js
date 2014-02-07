@@ -38,3 +38,9 @@ assert.deepEqual(_.flatten(list, true), [1, 2, 3, [4]], 'can shallowly flatten a
 // pluck
 var stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
 _.pluck(stooges, 'name');
+
+// each
+var answers = [];
+_.each([1, 2, 3], function(num){ answers.push(num * 5);}, {multiplier : 5});
+console.log('answers:', answers);
+assert.strictEqual(answers.join(', '), '5, 10, 15', 'context object property accessed');

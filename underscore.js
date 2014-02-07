@@ -140,11 +140,24 @@ _.pluck = function(list, propertyName){
     return obj[propertyName];
   });
 };
-console.log(_.pluck(stooges, 'name'));
 
-
-
-
+_.each = function(list, iterator) {
+  var type = Object.prototype.toString.call(list);
+  // '[object Array]'
+  // '[object Object]'
+  // ?? Error
+  if (type === '[object Array]') {
+    for (var i = 0; i < list.length; i += 1) {
+      iterator(list[i], i, list);
+    }
+  } else if (type === '[object Object]') {
+    for (var prop in list) {
+      iterator(list[value], prop, list);
+    } 
+  } else {
+    return undefined;
+  }
+};
 
 
 
