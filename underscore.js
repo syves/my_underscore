@@ -170,6 +170,10 @@ _.contains = function(list, value) {
 };
 //console.log(_.contains([5, 8, 9, 3], 8));
 
+_.find = function(list, iterator) {
+  return _.filter(list, iterator);
+};
+console.log(_.find([5, 8, 9, 3],function(num){ return num % 2 == 0; }));
 
 
 
