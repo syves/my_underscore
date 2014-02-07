@@ -170,10 +170,14 @@ _.contains = function(list, value) {
 };
 //console.log(_.contains([5, 8, 9, 3], 8));
 
-_.find = function(list, iterator) {
-  return _.filter(list, iterator);
+_.find = function(list, predicate, results) { 
+  for (i = 0; i < list.length; i += 1) {
+    if (predicate(list[i])) {
+      return list[i];
+    } 
+  }
 };
-console.log(_.find([5, 8, 9, 3],function(num){ return num % 2 == 0; }));
+console.log(_.find([5, 8, 9, 10],function(num){ return num % 2 == 0; }));
 
 
 
