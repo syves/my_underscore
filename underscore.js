@@ -151,8 +151,6 @@ _.each = function(list, iterator) {
     for (var prop in list) {
       iterator(list[value], prop, list);
     } 
-  } else {
-    return undefined;
   }
 };
 
@@ -164,25 +162,44 @@ _.invoke = function(list, methodName) {
 //console.log(_.invoke(['5', '7', '9', 'bob'], 'toUpperCase'));
 
 _.contains = function(list, value) {
- if (list.indexOf(value) >= 0) {
-  return true; 
- }
+ return list.indexOf(value) >= 0 
 };
 //console.log(_.contains([5, 8, 9, 3], 8));
 
-_.find = function(list, predicate, results) { 
+_.find = function(list, predicate) { 
   for (i = 0; i < list.length; i += 1) {
     if (predicate(list[i])) {
       return list[i];
     } 
   }
 };
-console.log(_.find([5, 8, 9, 10],function(num){ return num % 2 == 0; }));
+//console.log(_.find([5, 8, 9, 10],function(num){ return num % 2 == 0; }));
 
+var list = [
+  {a: 1, b: 2},
+  {a: 2, b: 2},
+  {a: 1, b: 3},
+  {a: 1, b: 4},
+  {a: 2, b: 4}
+];
 
-
-
-
+_.findWhere = function(list, properties) {
+var result = list[properties]; 
+  for (var i = 0; i < list.length; i += 1) {
+    var element = list[i];
+    var isMatch = true;
+    for (var key in properties) {
+      if (element[key] !== properties[key]) {
+        isMatch = false;
+        break
+      }   
+    }
+    if (isMatch) {
+      return element;
+    }
+  } 
+};
+console.log(_.findWhere(list, {a: 1, b: 3}));
 
 
 

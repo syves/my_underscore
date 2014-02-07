@@ -44,3 +44,12 @@ var answers = [];
 _.each([1, 2, 3], function(num){ answers.push(num * 5);}, {multiplier : 5});
 //console.log('answers:', answers);
 assert.strictEqual(answers.join(', '), '5, 10, 15', 'context object property accessed');
+
+//findWhere
+/*
+var list = [{a: 1, b: 2}, {a: 2, b: 2}, {a: 1, b: 3}, {a: 1, b: 4}, {a: 2, b: 4}];
+var result = _.findWhere(list, {a: 1});
+assert.deepEqual(result, {a: 1, b: 2});
+var result = _.findWhere(list, {b: 4});
+assert.deepEqual(result, {a: 1, b: 4});
+*/
