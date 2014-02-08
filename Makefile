@@ -1,6 +1,11 @@
-NODE = $(shell which node)
+MOCHA = node_modules/.bin/mocha
+
+
+.PHONY: setup
+setup:
+	npm install
 
 
 .PHONY: test
 test:
-	$(NODE) test/underscore
+	$(MOCHA)

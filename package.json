@@ -1,0 +1,9 @@
+{
+  "name": "my_underscore",
+  "version": "0.0.1",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "1.17.x"
+  }
+}

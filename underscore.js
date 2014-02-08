@@ -199,7 +199,7 @@ var result = list[properties];
     }
   } 
 };
-console.log(_.findWhere(list, {a: 1, b: 3}));
+//console.log(_.findWhere(list, {a: 1, b: 3}));
 
 
 
