@@ -184,22 +184,27 @@ var list = [
 ];
 
 _.findWhere = function(list, properties) {
-var result = list[properties]; 
   for (var i = 0; i < list.length; i += 1) {
-    var element = list[i];
-    var isMatch = true;
-    for (var key in properties) {
-      if (element[key] !== properties[key]) {
-        isMatch = false;
-        break
-      }   
+    if (_.isMatch(list[i], properties)) {
+      return list[i];
     }
-    if (isMatch) {
-      return element;
-    }
-  } 
-};
+  }
+ };
 //console.log(_.findWhere(list, {a: 1, b: 3}));
+_.isMatch = function(obj, properties) {
+  for (var key in properties) {
+    if (obj[key] !== properties[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+_.where = function(list, properties) {
+  return _.filter(list, function(obj) {
+    return _.isMatch(obj, properties);
+  });
+};
 
 
 
